@@ -1,0 +1,18 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player.cs">
+    <Files>
+      <File FileName="Assets\Scripts\GameManager.cs" Line="41" Column="3" />
+      <File FileName="Assets\Scripts\Scroll.cs" Line="17" Column="57" />
+      <File FileName="Assets\Scripts\Player.cs" Line="67" Column="31" />
+      <File FileName="Assets\Scripts\Islands.cs" Line="35" Column="86" />
+      <File FileName="Assets\Scripts\IslandScroll.cs" Line="16" Column="48" />
+      <File FileName="Assets\Scripts\Coins.cs" Line="40" Column="33" />
+      <File FileName="Assets\Scripts\CoinScroll.cs" Line="19" Column="4" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
