@@ -66,6 +66,7 @@ public class Player : MonoBehaviour {
 		} else if (GameManager.instance.isPaused == true && dir == 0.1f) {
 			this.transform.Translate (-0.1f, 0, 0);
 		}
+
 	}
 
 	// Collision with island kills player
