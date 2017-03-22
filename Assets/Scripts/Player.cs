@@ -5,10 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
 	public float dir;					//Initial direction is set to 0 on start so the player doesn't move until he taps
+	public float speed = 0.05f;		//Speed for the surfer
 
 	private bool isDead = false;		//Used for game over 
 	private Animator animate;			//Access the animator for the player
-	private float speed = 0.05f;
+
 
 	// Use this for initialization
 	void Start () {
