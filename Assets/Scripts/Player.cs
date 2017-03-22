@@ -33,19 +33,19 @@ public class Player : MonoBehaviour {
 		if (isDead == false && GameManager.instance.hasBegun == true) {
 			// If the player isn't moving i.e just started, then on tap set dir to left
 			if (dir == 0f && Input.GetButtonDown ("Fire1")) {
-				this.transform.Translate (-0.1f, 0, 0);
-				dir = -0.1f;
+				this.transform.Translate (-0.05f, 0, 0);
+				dir = -0.05f;
 			} 
 			// If the player is moving left, then on tap set dir to right and animate accordingly
-			else if (dir == -0.1f && Input.GetButtonDown ("Fire1")) {
-				this.transform.Translate (0.1f, 0, 0);
-				dir = 0.1f;
+			else if (dir == -0.05f && Input.GetButtonDown ("Fire1")) {
+				this.transform.Translate (0.05f, 0, 0);
+				dir = 0.05f;
 				animate.SetTrigger ("Right");
 			} 
 			// If the player is moving right, then on tap set dir to left and animate accordingly
-			else if (dir == 0.1f && Input.GetButtonDown ("Fire1")) {
-				this.transform.Translate (-0.1f, 0, 0);
-				dir = -0.1f;
+			else if (dir == 0.05f && Input.GetButtonDown ("Fire1")) {
+				this.transform.Translate (-0.05f, 0, 0);
+				dir = -0.05f;
 				animate.SetTrigger ("Left");
 			}
 		}
@@ -61,10 +61,10 @@ public class Player : MonoBehaviour {
 			GameManager.instance.pauseText.SetActive (false);
 		}
 		// If the game is paused, freeze player
-		if (GameManager.instance.isPaused == true && dir == -0.1f) {
-			this.transform.Translate (0.1f, 0, 0);
-		} else if (GameManager.instance.isPaused == true && dir == 0.1f) {
-			this.transform.Translate (-0.1f, 0, 0);
+		if (GameManager.instance.isPaused == true && dir == -0.05f) {
+			this.transform.Translate (0.05f, 0, 0);
+		} else if (GameManager.instance.isPaused == true && dir == 0.05f) {
+			this.transform.Translate (-0.05f, 0, 0);
 		}
 
 	}
