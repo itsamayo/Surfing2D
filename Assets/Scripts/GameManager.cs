@@ -10,12 +10,14 @@ public class GameManager : MonoBehaviour {
 	public GameObject startText;
 	public GameObject gameOverText;
 	public GameObject pauseText;
+	public GameObject pauseButton;
 	public Text scoreText;
 	public bool gameOver = false;
 	public bool hasBegun = false;
 	public bool isPaused = false;
 
-	private float score = 0;
+	private float distance = 0f;
+	private float score = 0f;
 
 	// Use this for initialization
 	void Awake () {
@@ -39,7 +41,12 @@ public class GameManager : MonoBehaviour {
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 		} 
 
-		scoreText.text = "Score: " + score.ToString ();
+		if (isPaused == false && gameOver == false && hasBegun == true) {
+			distance += Time.deltaTime;
+			score = Mathf.Round (distance);
+		}
+
+		scoreText.text = score.ToString () + "m";
 	}
 
 	//Collect coins
@@ -51,6 +58,7 @@ public class GameManager : MonoBehaviour {
 	public void SurferDied(){
 		// Sets the game over overlay to visible
 		gameOverText.SetActive (true);
+		pauseButton.SetActive (false);
 		// Sets gameOver to true so that the player can't move anymore
 		gameOver = true;
 	}

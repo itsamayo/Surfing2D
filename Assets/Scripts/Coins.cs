@@ -33,11 +33,12 @@ public class Coins : MonoBehaviour {
 	public void Update()
 	{
 		if (GameManager.instance.hasBegun == true && GameManager.instance.isPaused == false) {
-			// Timer to spawn the next island 
+			// Timer to spawn the next coin 
 			theCountdown -= Time.deltaTime;
 			if (theCountdown <= 0) {
-				SpawnCoins ();
-				theCountdown = waitingForNextSpawn;
+				// Spawn a coin
+				//SpawnCoins ();
+				//theCountdown = waitingForNextSpawn;
 			}
 		}
 

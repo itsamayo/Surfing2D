@@ -28,6 +28,7 @@ public class Player : MonoBehaviour {
 			if (Input.GetButtonDown ("Fire1")) {
 				GameManager.instance.hasBegun = true;
 				GameManager.instance.startText.SetActive (false);
+				GameManager.instance.pauseButton.SetActive (true);
 			} 
 		}
 
@@ -56,11 +57,13 @@ public class Player : MonoBehaviour {
 		if (GameManager.instance.gameOver == false && GameManager.instance.isPaused == false && Input.GetKeyDown (KeyCode.Escape)) {
 			GameManager.instance.isPaused = true;
 			GameManager.instance.pauseText.SetActive (true);
+			GameManager.instance.pauseButton.SetActive (false);
 		}
 		// Unpause the game
 		if (GameManager.instance.gameOver == false && GameManager.instance.isPaused == true && Input.GetMouseButtonDown(0)) {
 			GameManager.instance.isPaused = false;
 			GameManager.instance.pauseText.SetActive (false);
+			GameManager.instance.pauseButton.SetActive (true);
 		}
 		// If the game is paused, freeze player
 		if (GameManager.instance.isPaused == true && dir == -speed) {
