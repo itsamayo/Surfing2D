@@ -5,7 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
 	public float dir;					//Initial direction is set to 0 on start so the player doesn't move until he taps
-	public float speed = 0.05f;		//Speed for the surfer
+	public float speed = 0.03f;			//Speed for the surfer
+	public float dec = 0.015f;			//Deceleration speed
+	public float acc = 0.015f;			//Acceleration speed
+	public float accTime = 0.4f;		//Acceleration init time
+	public float moveTime = 0.8f;		//Max speed init time
 
 	private bool isDead = false;		//Used for game over 
 	private Animator animate;			//Access the animator for the player
@@ -21,8 +25,7 @@ public class Player : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {		
-		// Move the player nowhere on start
-		this.transform.Translate (dir, 0, 0);
+		
 		// If the player is alive do this
 		if (GameManager.instance.hasBegun == false){
 			if (Input.GetButtonDown ("Fire1")) {
@@ -32,26 +35,35 @@ public class Player : MonoBehaviour {
 			} 
 		}
 
-		// General player movement
+		// General player placement
 		if (isDead == false && GameManager.instance.hasBegun == true) {
 			// If the player isn't moving i.e just started, then on tap set dir to left
 			if (dir == 0f && Input.GetButtonDown ("Fire1")) {
-				this.transform.Translate (-speed, 0, 0);
 				dir = -speed;
 			} 
 			// If the player is moving left, then on tap set dir to right and animate accordingly
 			else if (dir == -speed && Input.GetButtonDown ("Fire1")) {
-				this.transform.Translate (speed, 0, 0);
-				dir = speed;
-				animate.SetTrigger ("Right");
+				// Decelerate
+				dir = -dec;
+				// Accelerate
+				Invoke ("accRight", accTime);
+				// Move
+				Invoke ("moveRight", moveTime);
+
 			} 
 			// If the player is moving right, then on tap set dir to left and animate accordingly
 			else if (dir == speed && Input.GetButtonDown ("Fire1")) {
-				this.transform.Translate (-speed, 0, 0);
-				dir = -speed;
-				animate.SetTrigger ("Left");
+				// Decelerate
+				dir = dec;
+				// Accelerate
+				Invoke ("accLeft", accTime);
+				// Move
+				Invoke ("moveLeft", moveTime);
 			}
 		}
+
+		// Move the player 
+		this.transform.Translate (dir, 0, 0);
 
 		// Pause the game
 		if (GameManager.instance.gameOver == false && GameManager.instance.isPaused == false && Input.GetKeyDown (KeyCode.Escape)) {
@@ -72,6 +84,24 @@ public class Player : MonoBehaviour {
 			this.transform.Translate (-speed, 0, 0);
 		}
 
+	}
+
+	public void accLeft(){
+		dir = -acc;
+	}
+
+	public void moveLeft(){
+		dir = -speed;
+		animate.SetTrigger ("Left");
+	}
+
+	public void accRight(){
+		dir = acc;
+	}
+
+	public void moveRight(){
+		dir = speed;
+		animate.SetTrigger ("Right");
 	}
 
 	// Collision with island kills player
