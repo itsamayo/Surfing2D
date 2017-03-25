@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
@@ -36,7 +37,7 @@ public class Player : MonoBehaviour {
 		}
 
 		// General player placement
-		if (isDead == false && GameManager.instance.hasBegun == true) {
+		if (isDead == false && GameManager.instance.hasBegun == true && GameManager.instance.isPaused == false) {
 			// If the player isn't moving i.e just started, then on tap set dir to left
 			if (dir == 0f && Input.GetButtonDown ("Fire1")) {
 				dir = -speed;
@@ -71,12 +72,7 @@ public class Player : MonoBehaviour {
 			GameManager.instance.pauseText.SetActive (true);
 			GameManager.instance.pauseButton.SetActive (false);
 		}
-		// Unpause the game
-		if (GameManager.instance.gameOver == false && GameManager.instance.isPaused == true && Input.GetMouseButtonDown(0)) {
-			GameManager.instance.isPaused = false;
-			GameManager.instance.pauseText.SetActive (false);
-			GameManager.instance.pauseButton.SetActive (true);
-		}
+
 		// If the game is paused, freeze player
 		if (GameManager.instance.isPaused == true && dir == -speed) {
 			this.transform.Translate (speed, 0, 0);
@@ -88,20 +84,37 @@ public class Player : MonoBehaviour {
 
 	public void accLeft(){
 		dir = -acc;
+		animate.SetTrigger ("Left");
 	}
 
 	public void moveLeft(){
 		dir = -speed;
-		animate.SetTrigger ("Left");
 	}
 
 	public void accRight(){
 		dir = acc;
+		animate.SetTrigger ("Right");
 	}
 
 	public void moveRight(){
 		dir = speed;
-		animate.SetTrigger ("Right");
+	}
+
+	public void pause(){
+		GameManager.instance.isPaused = true;
+		GameManager.instance.pauseText.SetActive (true);
+		GameManager.instance.pauseButton.SetActive (false);
+	}
+
+	public void unpause(){
+		GameManager.instance.isPaused = false;
+		GameManager.instance.pauseText.SetActive (false);
+		GameManager.instance.pauseButton.SetActive (true);
+	}
+
+
+	public void restart(){
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 	}
 
 	// Collision with island kills player

@@ -37,9 +37,9 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// If gameOver is true then on tap will restart the game - NB this is temporary
-		if (gameOver == true && Input.GetMouseButtonDown(0)) {
-			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
-		} 
+		//if (gameOver == true && Input.GetMouseButtonDown(0)) {
+		//	SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+		//} 
 
 		if (isPaused == false && gameOver == false && hasBegun == true) {
 			distance += Time.deltaTime;
