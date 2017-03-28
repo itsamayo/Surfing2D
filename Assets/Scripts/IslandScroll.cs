@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IslandScroll : MonoBehaviour {
 
-	public float speed = 0.0005f;
+	public float speed = 2f;
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +15,7 @@ public class IslandScroll : MonoBehaviour {
 	void Update () {
 		if (GameManager.instance.isPaused == false) {
 			//Once spawned, scroll the islands at the same speed as the ocean scroll
-			this.transform.Translate (Vector2.up * Time.deltaTime * 2, Camera.main.transform);
+			this.transform.Translate (Vector2.up * Time.deltaTime * speed, Camera.main.transform);
 		}
 	}
 }
