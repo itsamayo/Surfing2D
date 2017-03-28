@@ -46,6 +46,7 @@ public class Player : MonoBehaviour {
 			else if (dir == -speed && Input.GetButtonDown ("Fire1")) {
 				// Decelerate
 				dir = -dec;
+				animate.SetTrigger ("TurnRight");
 				// Accelerate
 				Invoke ("accRight", accTime);
 				// Move
@@ -56,6 +57,7 @@ public class Player : MonoBehaviour {
 			else if (dir == speed && Input.GetButtonDown ("Fire1")) {
 				// Decelerate
 				dir = dec;
+				animate.SetTrigger ("TurnLeft");
 				// Accelerate
 				Invoke ("accLeft", accTime);
 				// Move
